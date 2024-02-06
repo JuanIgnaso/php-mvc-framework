@@ -1,9 +1,9 @@
 <?php
 
-namespace app\core\middlewares;
+namespace juanignaso\phpmvc\framework\middlewares;
 
-use app\core\Application;
-use app\core\exception\NotFoundException;
+use juanignaso\phpmvc\framework\Application;
+use juanignaso\phpmvc\framework\exception\NotFoundException;
 
 class LoggedMiddleware extends BaseMiddleware
 {

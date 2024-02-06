@@ -1,15 +1,15 @@
 <?php
-namespace app\core;
+namespace juanignaso\phpmvc\framework;
 
-use app\core\db\DataBase;
-use app\core\db\DBmodel;
+use juanignaso\phpmvc\framework\db\DataBase;
+use juanignaso\phpmvc\framework\db\DBmodel;
 use app\models\TokensUsuario;
 use app\models\Usuario;
 
 /**
  * Class Application
  * 
- * @package app\core
+ * @package juanignaso\phpmvc\framework
  */
 class Application
 {

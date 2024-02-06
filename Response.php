@@ -1,5 +1,5 @@
 <?php
-namespace app\core;
+namespace juanignaso\phpmvc\framework;
 
 class Response
 {

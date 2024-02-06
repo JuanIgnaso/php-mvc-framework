@@ -1,0 +1,15 @@
+{
+    "name": "juanignaso/php-mcv-framework",
+    "authors": [
+        {
+            "name": "JuanIgnaso",
+            "email": "104755375+JuanIgnaso@users.noreply.github.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "juanignaso\\phpmvc\\framework\\":"./"
+        }
+    }
+}

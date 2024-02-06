@@ -1,8 +1,8 @@
 <?php
 
-namespace app\core\form;
+namespace juanignaso\phpmvc\framework\form;
 
-use app\core\Model;
+use juanignaso\phpmvc\framework\Model;
 
 abstract class BaseField
 {

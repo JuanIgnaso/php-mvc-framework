@@ -2,12 +2,12 @@
 
 #namespace debe de coincidir con el nombre de la carpeta
 #definido en composer.json
-namespace app\core;
+namespace juanignaso\phpmvc\framework;
 
-use app\core\exception\NotFoundException;
+use juanignaso\phpmvc\framework\exception\NotFoundException;
 
 /**
- * @package app\core
+ * @package juanignaso\phpmvc\framework
  */
 
 class Router
@@ -73,7 +73,7 @@ class Router
             se crea una instancia de ese objeto
             */
 
-            /** @var \app\core\Controller $controller  */
+            /** @var \juanignaso\phpmvc\framework\Controller $controller  */
             $controller = new $callback[0]();
             Application::$app->controller = $controller;
             $controller->action = $callback[1];
