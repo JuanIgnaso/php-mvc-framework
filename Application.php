@@ -2,9 +2,9 @@
 namespace juanignaso\phpmvc\framework;
 
 use juanignaso\phpmvc\framework\db\DataBase;
-use juanignaso\phpmvc\framework\db\DBmodel;
-use app\models\TokensUsuario;
-use app\models\Usuario;
+use juanignaso\phpmvc\framework\Token;
+
+// use app\models\Usuario; <-- Define aquí o usa aquí la clase que tengas de Usuario
 
 /**
  * Class Application
@@ -33,13 +33,16 @@ class Application
     public static Application $app;
 
     public ?Controller $controller = null;
+
+    #Define o escribe aquí la case de Usuario, en este caso sería un Modelo que manipulase la tabla con los datos del usuario
+    #El usuario aquí extiende de DBModel
     public ?Usuario $user;
 
     public View $view;
 
     public Cookie $cookie;
 
-    public TokensUsuario $Token;
+    public Token $Token;
 
 
     public function __construct($rootPath, array $config)
@@ -54,11 +57,11 @@ class Application
         $this->view = new View();
         $this->cookie = new Cookie();
         $this->db = new DataBase($config['db']);
-        $this->Token = new TokensUsuario();
+        $this->Token = new Token();
 
         $this->recoverUserSesion(); //Recupera la sesión si la cookie 'remember me' existe en el navegador
 
-        //Fetch user between page navigation, to access it in any point of the aplication
+        //Devuelve el usuario entre página y página, para poder acceder a él en cualquier punto de la aplicación.
         $primaryValue = $this->session->get('user');
         if ($primaryValue) {
             /*No deja llamar métodos no estáticos de forma estática*/
@@ -102,7 +105,7 @@ class Application
             tiene token, se inicia sesión.
             */
             if ($usuario != false) {
-                $userModel = new Usuario();
+                $userModel = new Usuario(); //Asignas a esta variable la clase del Usuario
                 $usuario = $userModel->findOne(['id' => $usuario['id']]);
                 $this->login($usuario);
             }
