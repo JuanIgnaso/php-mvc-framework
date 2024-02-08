@@ -2,7 +2,7 @@
 
 namespace juanignaso\phpmvc\framework;
 
-use Application;
+use juanignaso\phpmvc\framework\Application;
 
 
 class Token
