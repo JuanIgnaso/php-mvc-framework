@@ -14,8 +14,8 @@ class Usuario extends DBmodel
     public string $password = '';
     public string $passwordConfirm = '';
     public string $id;
-    public string $created_at;
-    public string $lastlog;
+    public string $created_at = '';
+    public string $lastlog = '';
 
     public function save()
     {
