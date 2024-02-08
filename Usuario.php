@@ -27,10 +27,10 @@ class Usuario extends DBmodel
     public function rules(): array
     {
         return [
-            'nombre' => [self::RULE_REQUIRED, [self::RULE_UNIQUE, 'class' => self::class]],
-            'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [self::RULE_UNIQUE, 'class' => self::class]],
-            'password' => [self::RULE_REQUIRED, [self::RULE_REGEX, 'regex' => '/^[a-zA-Z0-9\*\?\-\_\@#\+]{8,20}$/', 'text' => 'la contraseña debe contener de 8 a 20 caracteres, caracteres especiales permitidos: * ? - _ @ # +']],
-            'passwordConfirm' => [self::RULE_REQUIRED, [self::RULE_MATCH, 'match' => 'password']]
+            'nombre' => [[self::RULE_REQUIRED, 'campo' => $this->getLabel('nombre')], [self::RULE_UNIQUE, 'class' => self::class]],
+            'email' => [[self::RULE_REQUIRED, 'campo' => $this->getLabel('email')], self::RULE_EMAIL, [self::RULE_UNIQUE, 'class' => self::class]],
+            'password' => [[self::RULE_REQUIRED, 'campo' => $this->getLabel('password')], [self::RULE_REGEX, 'regex' => '/^[a-zA-Z0-9\*\?\-\_\@#\+]{8,20}$/', 'text' => 'la contraseña debe contener de 8 a 20 caracteres, caracteres especiales permitidos: * ? - _ @ # +']],
+            'passwordConfirm' => [[self::RULE_REQUIRED, 'campo' => $this->getLabel('passwordConfirm')], [self::RULE_MATCH, 'match' => 'password']]
         ];
     }
 
@@ -57,8 +57,8 @@ class Usuario extends DBmodel
     public function labels(): array
     {
         return [
-            'nombre' => 'Nombre de usuario',
-            'email' => 'Correo electrónico',
+            'nombre' => 'Nombre',
+            'email' => 'Email',
             'password' => 'Contraseña',
             'passwordConfirm' => 'Confirmar Contraseña'
         ];
