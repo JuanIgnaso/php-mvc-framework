@@ -1,9 +1,12 @@
 <?php
 
+
 namespace juanignaso\phpmvc\framework\db;
 
 use juanignaso\phpmvc\framework\Model;
 use juanignaso\phpmvc\framework\Application;
+
+#[\AllowDynamicProperties]
 
 abstract class DBmodel extends Model
 {
