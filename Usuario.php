@@ -2,9 +2,9 @@
 
 namespace juanignaso\phpmvc\framework;
 
-use juanignaso\phpmvc\framework\db\DBmodel;
+use juanignaso\phpmvc\framework\db\DBModel;
 
-class Usuario extends DBmodel
+class Usuario extends DBModel
 {
     const STATUS_INACTIVO = 0;
     const STATUS_ACTIVO = 1;

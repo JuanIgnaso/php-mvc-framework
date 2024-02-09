@@ -8,7 +8,7 @@ use juanignaso\phpmvc\framework\Application;
 
 #[\AllowDynamicProperties]
 
-abstract class DBmodel extends Model
+abstract class DBModel extends Model
 {
     abstract public function tableName(): string;
 
