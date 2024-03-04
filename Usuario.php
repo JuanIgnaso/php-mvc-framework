@@ -34,6 +34,26 @@ class Usuario extends DBModel
         ];
     }
 
+    public function edit(): bool
+    {
+        try {
+            $table = $this->tableName();
+            $attributes = $this->attributes();
+            $sql = implode(',', array_map(fn($attr) => "$attr=:$attr", $attributes));
+            $statement = self::prepare("UPDATE " . $table . " SET " . $sql . " WHERE id=:id");
+            foreach ($attributes as $attr) {
+                $statement->bindValue(":$attr", $this->{$attr});
+            }
+            $statement->bindValue(":id", $this->id);
+
+            return $statement->execute();
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+
+    }
+
     public function attributes(): array
     {
         return ['nombre', 'email', 'password', 'status'];
@@ -62,5 +82,16 @@ class Usuario extends DBModel
             'password' => 'Contraseña',
             'passwordConfirm' => 'Confirmar Contraseña'
         ];
+    }
+
+    /**
+     * Actualiza el último log del usuario en la tabla de usuarios
+     * @param $id
+     */
+    public function updateUserLog($id)
+    {
+        $statement = self::prepare("UPDATE " . $this->tableName() . " SET last_log = CURRENT_TIMESTAMP WHERE id=:id");
+        $statement->bindValue(":id", $id);
+        $statement->execute();
     }
 }
