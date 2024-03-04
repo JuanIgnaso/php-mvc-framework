@@ -21,7 +21,7 @@ abstract class DBModel extends Model
         $tableName = $this->tableName();
         $attributes = $this->attributes();
         $params = array_map(fn($attr) => ":$attr", $attributes);
-        $statement = self::prepare("INSERT INTO $tableName (" . implode(',', $attributes) . ") 
+        $statement = self::prepare("INSERT INTO $tableName (" . implode(',', $attributes) . ")
         VALUES(" . implode(',', $params) . ")");
         foreach ($attributes as $attribute) {
             $statement->bindValue(":$attribute", $this->{$attribute});
@@ -34,7 +34,7 @@ abstract class DBModel extends Model
      * Devuelve una lista de los valores de un atributo que coincidan
      * con el valor cargado en ese atributo(el atributo en cuestión debe de estar previamente
      * cargado en el modelo mediante $modelo->loadData()).
-     * 
+     *
      * @param $attr
      */
     public function getAttrList($attr)
@@ -90,5 +90,22 @@ abstract class DBModel extends Model
         $statement->execute();
         return $statement->fetchObject(static::class);
         //SELECT * FROM $tableName WHERE email=:email AND username = :username
+    }
+
+        /**
+     * Busca si un atributo pasado por parámetro se encuentra ya en uso en la tabla especificada
+     * @param $id
+     * @param $attr
+     * @param $value
+     *
+     * @return bool
+     */
+    public function attrInUse($id, $attr, $value): bool
+    {
+        $statement = self::prepare("SELECT * FROM " . $this->tableName() . " WHERE " . $attr . " = :attr AND id != :id");
+        $statement->bindValue(":id", $id);
+        $statement->bindValue(":attr", $value);
+        $statement->execute();
+        return $statement->rowCount();
     }
 }

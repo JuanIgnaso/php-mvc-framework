@@ -16,6 +16,7 @@ class Usuario extends DBModel
     public string $id;
     public string $created_at = '';
     public string $lastlog = '';
+    public int $status = self::STATUS_ACTIVO;
 
     public function save()
     {
